@@ -1,9 +1,21 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import logo from './logo.svg';
+import { MAIN_URL, TOKEN } from './tokens';
 import './App.css';
 
 class App extends Component {
   render() {
+    axios({
+      method:'get',
+      url: `${MAIN_URL}competitions/2014/matches`,
+      headers: {
+        'X-Auth-Token': TOKEN,
+      },
+    })
+    .then(function ({data}) {
+      console.log(data);
+    })
     return (
       <div className="App">
         <header className="App-header">
