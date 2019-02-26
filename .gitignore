@@ -1,5 +1,5 @@
 #API tokens
-/src/tokens.js
+/src/data/tokens.js
 
 # dependencies
 /node_modules

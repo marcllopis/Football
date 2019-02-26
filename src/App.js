@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import logo from './logo.svg';
-import { MAIN_URL, TOKEN } from './tokens';
+import { MAIN_URL, TOKEN } from './data/tokens';
 import './App.css';
+import { LeagueSelector } from './components/league-selector/league-selector';
 
 class App extends Component {
   render() {
     axios({
       method:'get',
-      url: `${MAIN_URL}competitions/2014/matches`,
+      url: `${MAIN_URL}competitions?plan=TIER_ONE`,
       headers: {
         'X-Auth-Token': TOKEN,
       },
@@ -18,20 +18,7 @@ class App extends Component {
     })
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+          <LeagueSelector />
       </div>
     );
   }
