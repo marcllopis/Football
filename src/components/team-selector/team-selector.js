@@ -1,47 +1,37 @@
 import React, { useContext, useEffect, useState } from 'react';
-import axios from 'axios';
-import { MAIN_URL, TOKEN } from '../../data/tokens';
+import { fetchTeams } from '../../api/api-calls';
 import { MainContext } from '../../context-provider/context-provider';
 import { Actions } from './actions';
+import {
+  OptionsSelector,
+  EmblemContainer
+} from '../../utils/league-team-selector/league-team-selector';
+import { Emblem } from '../../utils/emblem/emblem';
+import { EmblemButton } from '../../utils/emblem-buttons/emblem-buttons';
+
 
 export function TeamSelector() {
   const { state, dispatch } = useContext(MainContext);
   const [data, setData] = useState();
 
-  const fetchData = async () => {
-    const { data } = await axios({
-      method: 'get',
-      url: `${MAIN_URL}competitions/${state.league.id}/teams`,
-      headers: {
-        'X-Auth-Token': TOKEN,
-      },
-    });
-    setData(data.teams);
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-  console.log('dataaa', data);
-
+  useEffect(() => { fetchTeams(state.league.id, setData) }, []);
   
   return (
-    <div className='league-selector'>
-    League: {state.league.name}
+    <OptionsSelector className='league-selector'>
       {data ?
         data.map(team => (
         <div key={team.id}>
-          <img src={team.crestUrl} alt={team.name} />
-          <div>
-            <button onClick={() =>
+          <Emblem src={team.crestUrl} alt={team.name} />
+          <EmblemContainer>
+            <EmblemButton onClick={() =>
               dispatch({ type: Actions.GET_TEAM, team })}>
-              Select {team.name}
-            </button>
-          </div>
+              {team.name}
+            </EmblemButton>
+          </EmblemContainer>
         </div>
       ))
       : `NO TEAMS BRO`}
       <br />
-    </div>
+    </OptionsSelector>
   );
 };
