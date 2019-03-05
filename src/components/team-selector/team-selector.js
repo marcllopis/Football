@@ -1,13 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, Fragment } from 'react';
 import { fetchTeams } from '../../api/api-calls';
 import { MainContext } from '../../context-provider/context-provider';
 import { Actions } from './actions';
-import {
-  OptionsSelector,
-  EmblemContainer
-} from '../../utils/league-team-selector/league-team-selector';
-import { Emblem } from '../../utils/emblem/emblem';
-import { EmblemButton } from '../../utils/emblem-buttons/emblem-buttons';
+import { Scene } from '../../utils/carousel/carousel.styles';
+import { OptionsSelector } from '../../utils/carousel/carousel';
 
 
 export function TeamSelector() {
@@ -15,23 +11,18 @@ export function TeamSelector() {
   const [data, setData] = useState();
 
   useEffect(() => { fetchTeams(state.league.id, setData) }, []);
-  
+
   return (
-    <OptionsSelector className='league-selector'>
-      {data ?
-        data.map(team => (
-        <div key={team.id}>
-          <Emblem src={team.crestUrl} alt={team.name} />
-          <EmblemContainer>
-            <EmblemButton onClick={() =>
-              dispatch({ type: Actions.GET_TEAM, team })}>
-              {team.name}
-            </EmblemButton>
-          </EmblemContainer>
-        </div>
-      ))
-      : `NO TEAMS BRO`}
-      <br />
-    </OptionsSelector>
+    <Fragment>
+      <Scene>
+        {data ?
+          <OptionsSelector
+            arr={data}
+            length={data.length}
+            action={() => dispatch({ type: Actions.GET_TEAM, team: data[0] })}
+          />
+          : `NO TEAMS BRO`}
+      </Scene>
+    </Fragment>
   );
 };
