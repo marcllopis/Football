@@ -5,6 +5,7 @@ import './index.css';
 import App from './App';
 import { LeagueSelector } from './components/league-selector/league-selector';
 import { TeamSelector } from './components/team-selector/team-selector';
+import { TeamInfo } from './components/team-info/team-info';
 import { MainContextProvider } from './context-provider/context-provider';
 
 
@@ -14,6 +15,7 @@ ReactDOM.render(
       <Route exact path="/" component={App} />
       <Route exact path="/leagues" component={LeagueSelector} />
       <Route exact path="/teams" component={TeamSelector} />
+      <Route exact path="/team-info" component={TeamInfo} />
     </MainContextProvider>
   </Router>,
   document.getElementById('root'));

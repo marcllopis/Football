@@ -21,6 +21,7 @@ export function OptionsSelector(props) {
     arr,
     length,
     action,
+    linkTo
   } = props
   const [value, set] = useState(true); //simulate a re-render with custom hook
 
@@ -52,7 +53,7 @@ export function OptionsSelector(props) {
           <PrevButton onClick={() => prevButton()}>
             {'<'}
           </PrevButton>
-          <Link to="/teams">
+          <Link to={linkTo}>
             <EmblemButton onClick={() =>
               action()}>
               {arr[0].name}

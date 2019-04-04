@@ -16,6 +16,7 @@ export function LeagueSelector() {
         <OptionsSelector
           arr={Leagues}
           length={Leagues.length}
+          linkTo="/teams"
           action={() => dispatch(
             { type: Actions.GET_LEAGUE, leagues: Leagues[0] }
           )}
