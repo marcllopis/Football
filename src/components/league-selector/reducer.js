@@ -5,5 +5,6 @@ export const LeagueSelectorHandler = {
   [Actions.GET_LEAGUE]: (state, payload) => ({
     ...state,
     league: payload.leagues,
+    leagueSelected: true,
   }),
 };

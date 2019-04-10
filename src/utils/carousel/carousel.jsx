@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import { array, number, func, string } from 'prop-types';
 import {
   EmblemContainer,
   EmblemContainerSecondLast,
@@ -21,41 +21,60 @@ export function OptionsSelector(props) {
     arr,
     length,
     action,
-    linkTo
-  } = props
-  const [value, set] = useState(true); //simulate a re-render with custom hook
+    linkTo,
+  } = props;
+
+  const [value, set] = useState(true); // simulate a re-render with custom hook
+  const [imageLoadError] = useState(true);
+
+  const fallbackImage = (e) => {
+    if (imageLoadError) e.target.src = 'https://www.freeiconspng.com/uploads/no-image-icon-4.png';
+  };
 
   const prevButton = () => {
-    let temp = arr.pop();
+    const temp = arr.pop();
     arr.unshift(temp);
     set(!value);
   };
 
   const nextButton = () => {
-    let temp = arr.shift();
+    const temp = arr.shift();
     arr.push(temp);
     set(!value);
   };
-  
+
   return (
     <Fragment>
       <EmblemContainerSecondLast index={length - 2} length={length}>
-        <Emblem src={arr[length - 2].crestUrl} alt={arr[length - 2].name} />
+        <Emblem
+          src={arr[length - 2].crestUrl}
+          alt={arr[length - 2].name}
+          onError={fallbackImage}
+        />
       </EmblemContainerSecondLast>
 
       <EmblemContainerLast index={length - 1} length={length}>
-        <Emblem src={arr[length - 1].crestUrl} alt={arr[length - 1].name} />
+        <Emblem
+          src={arr[length - 1].crestUrl}
+          alt={arr[length - 1].name}
+          onError={fallbackImage}
+        />
       </EmblemContainerLast>
 
       <EmblemContainer index={0} length={length}>
-        <Emblem src={arr[0].crestUrl} alt={arr[0].name} />
+        <Emblem
+          src={arr[0].crestUrl}
+          alt={arr[0].name}
+          onError={fallbackImage}
+        />
         <div>
           <PrevButton onClick={() => prevButton()}>
             {'<'}
           </PrevButton>
           <Link to={linkTo}>
             <EmblemButton onClick={() =>
-              action()}>
+              action()}
+            >
               {arr[0].name}
             </EmblemButton>
           </Link>
@@ -66,13 +85,27 @@ export function OptionsSelector(props) {
       </EmblemContainer>
 
       <EmblemContainerFirst index={1} length={length}>
-        <Emblem src={arr[1].crestUrl} alt={arr[1].name} />
+        <Emblem
+          src={arr[1].crestUrl}
+          alt={arr[1].name}
+          onError={fallbackImage}
+        />
       </EmblemContainerFirst>
 
       <EmblemContainerSecond index={2} length={length}>
-        <Emblem src={arr[2].crestUrl} alt={arr[2].name} />
+        <Emblem
+          src={arr[2].crestUrl}
+          alt={arr[2].name}
+          onError={fallbackImage}
+        />
       </EmblemContainerSecond>
     </Fragment>
-
   );
+}
+
+OptionsSelector.propTypes = {
+  arr: array.isRequired,
+  length: number.isRequired,
+  action: func.isRequired,
+  linkTo: string.isRequired,
 };

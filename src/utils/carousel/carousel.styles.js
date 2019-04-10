@@ -28,7 +28,7 @@ export const EmblemContainer = styled.div`
   top: 10px;
   text-align: center;
   transition: transform 1s, opacity 1s;
-  transform:rotateY(${p => p.index * 360/p.length}deg) translateZ(${p => 28 * p.length}px);
+  transform:rotateY(${p => p.index * 360 / p.length}deg) translateZ(${p => 28 * p.length}px);
 `;
 
 export const EmblemContainerSecondLast = styled(EmblemContainer)`

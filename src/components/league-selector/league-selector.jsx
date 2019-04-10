@@ -18,10 +18,10 @@ export function LeagueSelector() {
           length={Leagues.length}
           linkTo="/teams"
           action={() => dispatch(
-            { type: Actions.GET_LEAGUE, leagues: Leagues[0] }
+            { type: Actions.GET_LEAGUE, leagues: Leagues[0] },
           )}
         />
       </Scene>
     </Fragment>
   );
-};
+}

@@ -1,4 +1,5 @@
-import React, { useReducer, createContext } from "react";
+import React, { useReducer, createContext } from 'react';
+import { node } from 'prop-types';
 import mainReducer, { initialState } from '../store/reducer';
 
 
@@ -10,6 +11,10 @@ function MainContextProvider(props) {
   return (
     <MainContext.Provider value={value}>{props.children}</MainContext.Provider>
   );
+}
+
+MainContextProvider.propTypes = {
+  children: node.isRequired,
 };
 
 export { MainContext, MainContextProvider };

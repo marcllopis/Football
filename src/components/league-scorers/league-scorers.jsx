@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState, Fragment } from 'react';
+import shortId from 'shortid';
 import { fetchLeagueScorers } from '../../api/api-calls';
 import { MainContext } from '../../context-provider/context-provider';
+import { Loader } from '../../utils/loader/loader';
 
 
 export function LeagueScorers() {
@@ -11,9 +13,15 @@ export function LeagueScorers() {
 
   return (
     <Fragment>
-        {data ?
-          `Top Scorer for this league: ${data[0].player.name}`
-          : `LEAGUE SCORERS INFO NOT LOADED`}
+      {data ? (
+        <div>
+          <h3>Top Scorers</h3>
+          {data.map((player, i) => (
+            <div key={shortId.generate()}>{i + 1}. {player.player.name} | {player.team.name} | {player.numberOfGoals} goals</div>
+          ))}
+        </div>
+      )
+        : <Loader />}
     </Fragment>
   );
 };

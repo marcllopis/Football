@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './index.css';
-import App from './App';
+import { App } from './App';
 import { LeagueSelector } from './components/league-selector/league-selector';
 import { TeamSelector } from './components/team-selector/team-selector';
 import { TeamInfo } from './components/team-info/team-info';
@@ -18,4 +18,5 @@ ReactDOM.render(
       <Route exact path="/team-info" component={TeamInfo} />
     </MainContextProvider>
   </Router>,
-  document.getElementById('root'));
+  document.getElementById('root'),
+);

@@ -21,7 +21,7 @@ export const fetchLeagueStandings = async (leagueId, setStandings) => {
       'X-Auth-Token': TOKEN,
     },
   });
-  setStandings(data.standings);
+  setStandings(data.standings[0].table); // current season only
 };
 
 export const fetchLeagueMatchDay = async (leagueId, setMatchDay) => {
@@ -69,7 +69,7 @@ export const fetchTeamMatches = async (teamId, leagueName, setTeamMatches) => {
     team => team.competition.name === leagueName)); // filter selected league
 };
 
-export const fetchTeamDetails = async (teamId, setTeamDetails) => {
+export const fetchTeamSquad = async (teamId, setTeamSquad) => {
   const { data } = await axios({
     method: 'get',
     url: `${MAIN_URL}teams/${teamId}`,
@@ -77,5 +77,5 @@ export const fetchTeamDetails = async (teamId, setTeamDetails) => {
       'X-Auth-Token': TOKEN,
     },
   });
-  setTeamDetails(data);
+  setTeamSquad(data.squad);
 };

@@ -3,10 +3,10 @@ import { TeamSelectorHandler } from '../components/team-selector/reducer';
 
 
 export const initialState = {
-  count: 0,
   league: {},
   team: {},
-  component: 0,
+  leagueSelected: false,
+  teamSelected: false,
 };
 
 const mainHandler = {
@@ -17,4 +17,4 @@ const mainHandler = {
 export default function mainReducer(state = initialState, action) {
   const handler = mainHandler[action.type];
   return handler ? handler(state, action) : state;
-};
+}
