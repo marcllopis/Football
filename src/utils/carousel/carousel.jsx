@@ -50,6 +50,7 @@ export function OptionsSelector(props) {
           src={arr[length - 2].crestUrl}
           alt={arr[length - 2].name}
           onError={fallbackImage}
+          option="selector"
         />
       </EmblemContainerSecondLast>
 
@@ -58,6 +59,7 @@ export function OptionsSelector(props) {
           src={arr[length - 1].crestUrl}
           alt={arr[length - 1].name}
           onError={fallbackImage}
+          option="selector"
         />
       </EmblemContainerLast>
 
@@ -66,6 +68,7 @@ export function OptionsSelector(props) {
           src={arr[0].crestUrl}
           alt={arr[0].name}
           onError={fallbackImage}
+          option="selector"
         />
         <div>
           <PrevButton onClick={() => prevButton()}>
@@ -89,6 +92,7 @@ export function OptionsSelector(props) {
           src={arr[1].crestUrl}
           alt={arr[1].name}
           onError={fallbackImage}
+          option="selector"
         />
       </EmblemContainerFirst>
 
@@ -97,6 +101,7 @@ export function OptionsSelector(props) {
           src={arr[2].crestUrl}
           alt={arr[2].name}
           onError={fallbackImage}
+          option="selector"
         />
       </EmblemContainerSecond>
     </Fragment>
