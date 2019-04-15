@@ -3,7 +3,9 @@
 ## What's that?
 This small app was created to work and test the latest React version `version 16.8`.
 
-It uses the [football-data.org](https://www.football-data.org/) API to pull all football games and data from major leagues and teams. The user will be able to browse around different leagues and team per league to select a team and show all the info about upcoming games, results and scoreboard among others.
+It uses the [football-data.org](https://www.football-data.org/) API to pull all football games and data from major leagues and teams. The user will be able to browse around different leagues and teams per league using a 3D carousel that will adapt to the number of teams or leagues that comes from the API. Once a team is selected it will show all the info about upcoming games, results and scoreboard among others.
+
+You can check the app [here](https://football-app.marcllopis89.now.sh/team-info)
 
 ## How does it work?
 ### State management
