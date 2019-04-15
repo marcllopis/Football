@@ -1,3 +1,33 @@
+# Football App
+
+## What's that?
+This small app was created to work and test the latest React version `version 16.8`.
+
+It uses the [football-data.org](https://www.football-data.org/) API to pull all football games and data from major leagues and teams. The user will be able to browse around different leagues and team per league to select a team and show all the info about upcoming games, results and scoreboard among others.
+
+## How does it work?
+### State management
+The app is wrapped around a React Context object that will be the main provider for the state of the app. With the new `useReducer` functionality the app will simulate the `Redux` actions / reducers but always without using the actual library.
+
+The league and team info will be saved on the app store for further use on different components and league and team actions and reducers will be combined on the main app reducer
+
+### Pulling info from the API
+There are the main leagues hardcoded on the app code since the free version of the API will only allow some leagues, but still will loop around all the info from their database.
+
+Once the user select a league and a team, all the info about the team will be displayed through several API calls (could be found on [api/api-calls.js](./src/api/api-calls.js)). Using the new feature `useEffect` the app will handle all API calls, show a loader icon while looking for that info and show the actual content when it's ready.
+
+### Routes
+The app has some simple routing around and it's the main store that will control on which route you are with the boolean parameters `leagueSelected` and `teamSelected`. When those parameters turn true, the step can be rendered, if false, it will always go back to `/leagues` (since you always need a team to render some team info)
+
+## TODO's
+ - Improve the overall app styles and approach mobile design
+ - Detect the errors from the API calls (teams and data not coming back) and show a workaround of it
+ - Add unit testing (`Jest`) and E2E testing (`Cypress`)
+
+
+
+
+## Start the project
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
